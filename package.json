@@ -1,6 +1,6 @@
 {
-  "name": "jookey-api",
-  "version": "1.0.0",
+  "name": "expressts-typeorm-bp",
+  "version": "0.0.1",
   "main": "index.js",
   "author": "princejoogie",
   "license": "MIT",
