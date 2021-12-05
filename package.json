@@ -8,6 +8,7 @@
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "build": "rimraf dist && tsc",
     "start": "node ./dist/index.js",
+    "commit": "git-cz",
     "migration:run": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:run --config ./src/typeorm/config/ormconfig.ts",
     "migration:revert": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert --config ./src/typeorm/config/ormconfig.ts",
     "migration:generate": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:generate --pretty --config ./src/typeorm/config/ormconfig.ts -n PostRefactoring",
@@ -34,6 +35,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "git-cz": "^4.8.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",
@@ -44,5 +46,10 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
   }
 }
