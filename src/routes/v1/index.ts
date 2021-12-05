@@ -1,9 +1,9 @@
 import { Router } from "express";
 
+import users from "./users";
+
 const router = Router();
 
-router.use("/hello", (_, res) => {
-  res.status(200).send({ success: true, message: "Hello World" });
-});
+router.use("/users", users);
 
 export default router;

@@ -3,6 +3,7 @@
     "expressts",
     "ormconfig",
     "princejoogie",
+    "ttsc",
     "typeorm"
   ]
 }

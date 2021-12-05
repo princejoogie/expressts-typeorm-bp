@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import routes from "./routes";
-import { dbCreateConnection } from "./typeorm/dbCreateConnection";
+import { dbCreateConnection } from "./orm/dbCreateConnection";
 
 const PORT = process.env.PORT || 4000;
 
