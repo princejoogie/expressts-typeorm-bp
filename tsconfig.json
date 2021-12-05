@@ -18,7 +18,8 @@
     "target": "es2021"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".eslintrc.js"
   ],
   "include": [
     "src"
