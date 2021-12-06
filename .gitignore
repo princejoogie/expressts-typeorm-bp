@@ -7,4 +7,6 @@ temp/
 
 .env
 
+# logs
 yarn-error.log
+log/access.log

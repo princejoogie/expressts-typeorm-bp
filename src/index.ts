@@ -1,10 +1,13 @@
 /* eslint-disable no-console */
 import "dotenv/config";
 import "reflect-metadata";
-
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
+import fs from "fs";
+import path from "path";
+import morgan from "morgan";
+
 import routes from "./routes";
 import { dbCreateConnection } from "./orm/dbCreateConnection";
 
@@ -14,13 +17,21 @@ const main = async () => {
   // initialize database connection
   await dbCreateConnection();
 
-  // variables
   const app = express();
+  const accessLogStream = fs.createWriteStream(
+    path.join(__dirname, "../log/access.log"),
+    { flags: "a" }
+  );
+
   app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-
-  // routes
+  app.use(
+    morgan("combined", {
+      stream: accessLogStream,
+    })
+  );
+  app.use(morgan("combined"));
   app.use("/", routes);
 
   app.listen(PORT, () => {

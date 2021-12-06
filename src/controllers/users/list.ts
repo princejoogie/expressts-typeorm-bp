@@ -17,9 +17,9 @@ export const list = async (req: Request, res: Response) => {
       ],
     });
 
-    res.status(200).json(users);
+    return res.status(200).json(users);
   } catch (err: any) {
-    res.status(500).json({
+    return res.status(500).json({
       name: err.name,
       message: err.message,
     });
