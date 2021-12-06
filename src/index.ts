@@ -39,7 +39,8 @@ const main = async () => {
   app.use("/", routes);
 
   app.listen(PORT, () => {
-    console.log(`listening on http://localhost:${PORT}!`);
+    console.log(`Server started on http://localhost:${PORT}!`);
+    console.log();
   });
 };
 

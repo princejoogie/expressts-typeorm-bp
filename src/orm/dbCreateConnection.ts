@@ -5,9 +5,14 @@ import config from "./config/ormconfig";
 export const dbCreateConnection = async (): Promise<Connection | null> => {
   try {
     const conn = await createConnection(config);
-    console.log(`Database connection established: ${conn.isConnected}`);
-    console.log(`Connection name: ${conn.name}`);
-    console.log(`Database: ${conn.options.database}`);
+    const details = {
+      connectionEstablished: conn.isConnected,
+      connectionName: conn.name,
+      databaseType: conn.options.type,
+      databaseName: conn.options.database,
+    };
+    console.table(details);
+    console.log();
 
     return conn;
   } catch (err) {
