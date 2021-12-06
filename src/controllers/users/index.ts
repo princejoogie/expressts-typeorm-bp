@@ -1,2 +1,2 @@
-export * from "./show";
-export * from "./list";
+export * from "./getUserById";
+export * from "./getUsers";

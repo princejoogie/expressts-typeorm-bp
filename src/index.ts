@@ -26,12 +26,16 @@ const main = async () => {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  // logs to "./log/access.log"
   app.use(
     morgan("combined", {
       stream: accessLogStream,
     })
   );
+  // logs to console
   app.use(morgan("combined"));
+
   app.use("/", routes);
 
   app.listen(PORT, () => {

@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { Connection, createConnection } from "typeorm";
-
 import config from "./config/ormconfig";
 
 export const dbCreateConnection = async (): Promise<Connection | null> => {
@@ -9,6 +8,8 @@ export const dbCreateConnection = async (): Promise<Connection | null> => {
     console.log(`Database connection established: ${conn.isConnected}`);
     console.log(`Connection name: ${conn.name}`);
     console.log(`Database: ${conn.options.database}`);
+
+    return conn;
   } catch (err) {
     console.error(err);
   }
