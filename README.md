@@ -21,7 +21,12 @@ A boilerplate for creating RESTful APIs with TypeScript
 
 (coming soon)
 
+## References
+
+- [Absolute Imports](https://stackoverflow.com/questions/63744943/absolute-path-in-the-tsconfig-dose-not-work)
+
 ---
+
 
 Prince Carlo Juguilon
 
