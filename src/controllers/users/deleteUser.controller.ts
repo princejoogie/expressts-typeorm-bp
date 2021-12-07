@@ -11,7 +11,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        name: "NotFoundError",
+        type: "NotFoundError",
         message: "User not found",
       });
     }
@@ -29,7 +29,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
     });
   } catch (err: any) {
     return res.status(500).json({
-      name: err.name,
+      type: err.name,
       message: err.message,
     });
   }

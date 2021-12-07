@@ -13,7 +13,11 @@ export const register = async (
     const user = await userRepository.findOne({ where: { email } });
 
     if (user) {
-      return res.status(400).json({ message: "User already exists" });
+      // return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({
+        type: "UserAlreadyExistsError",
+        message: "User already exists",
+      });
     }
 
     const newUser = userRepository.create({
@@ -36,7 +40,7 @@ export const register = async (
     });
   } catch (err: any) {
     return res.status(400).json({
-      name: err.name,
+      type: err.name,
       message: err.message,
     });
   }

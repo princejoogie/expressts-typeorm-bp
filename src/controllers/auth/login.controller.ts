@@ -13,11 +13,17 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(404).json({
+        type: "NotFoundError",
+        message: "User not found",
+      });
     }
 
     if (!user.isPasswordValid(password)) {
-      return res.status(400).json({ message: "Password does not match" });
+      return res.status(400).json({
+        type: "BadRequestError",
+        message: "Password does not match",
+      });
     }
 
     return res.json({
@@ -25,7 +31,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     });
   } catch (err: any) {
     return res.status(400).json({
-      name: err.name,
+      type: err.name,
       message: err.message,
     });
   }

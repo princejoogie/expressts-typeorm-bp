@@ -23,7 +23,7 @@ export const getUserById = async (
 
     if (!user) {
       return res.status(404).json({
-        name: "NotFoundError",
+        type: "NotFoundError",
         message: "User not found",
       });
     }
@@ -31,7 +31,7 @@ export const getUserById = async (
     return res.status(200).json(user);
   } catch (err: any) {
     return res.status(500).json({
-      name: err.name,
+      type: err.name,
       message: err.message,
     });
   }
