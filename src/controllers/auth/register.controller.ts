@@ -13,7 +13,6 @@ export const register = async (
     const user = await userRepository.findOne({ where: { email } });
 
     if (user) {
-      // return res.status(400).json({ message: "User already exists" });
       return res.status(400).json({
         type: "UserAlreadyExistsError",
         message: "User already exists",
