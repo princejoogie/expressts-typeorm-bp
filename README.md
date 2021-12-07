@@ -24,6 +24,7 @@ A boilerplate for creating RESTful APIs with TypeScript
 ## References
 
 - [Absolute Imports](https://stackoverflow.com/questions/63744943/absolute-path-in-the-tsconfig-dose-not-work)
+- [Dockerize](https://medium.com/@rcuni8/create-expressjs-server-with-typeorm-and-postgres-using-docker-and-docker-compose-66f1ebc9d94b)
 
 ---
 
