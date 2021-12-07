@@ -13,18 +13,18 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     });
 
     if (!user) {
-      return res.status(400).json({ error: "User not found" });
+      return res.status(400).json({ message: "User not found" });
     }
 
     if (!user.isPasswordValid(password)) {
-      return res.status(400).json({ error: "Password does not match" });
+      return res.status(400).json({ message: "Password does not match" });
     }
 
     return res.json({
       accessToken: "token-fake",
     });
   } catch (err: any) {
-    return res.status(500).json({
+    return res.status(400).json({
       name: err.name,
       message: err.message,
     });

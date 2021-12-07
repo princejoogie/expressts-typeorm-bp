@@ -10,21 +10,32 @@ export const register = async (
   const userRepository = getRepository(User);
 
   try {
-    const user = userRepository.create({
+    const user = await userRepository.findOne({ where: { email } });
+
+    if (user) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const newUser = userRepository.create({
       email,
       firstName,
       lastName,
       password,
     });
-
-    user.hashPassword();
-    userRepository.save(user);
+    newUser.hashPassword();
+    await userRepository.save(newUser);
 
     return res.json({
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+      },
       accessToken: "token-fake",
     });
   } catch (err: any) {
-    return res.status(500).json({
+    return res.status(400).json({
       name: err.name,
       message: err.message,
     });
