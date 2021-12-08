@@ -1,8 +1,13 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "src/orm/entities/User";
+import { CustomError } from "src/utils/response/customError";
 
-export const deleteUserById = async (req: Request, res: Response) => {
+export const deleteUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   const userRepository = getRepository(User);
 
@@ -10,15 +15,13 @@ export const deleteUserById = async (req: Request, res: Response) => {
     const user = await userRepository.findOne({ where: { id } });
 
     if (!user) {
-      return res.status(404).json({
-        type: "NotFoundError",
-        message: "User not found",
-      });
+      const customError = new CustomError(404, "NotFound", "User not found");
+      return next(customError);
     }
 
     await userRepository.remove(user);
 
-    return res.status(200).json({
+    return res.customSuccess(200, {
       message: `User ${user.email} deleted`,
       user: {
         id: user.id,
@@ -28,9 +31,11 @@ export const deleteUserById = async (req: Request, res: Response) => {
       },
     });
   } catch (err: any) {
-    return res.status(500).json({
-      type: err.name,
-      message: err.message,
-    });
+    const customError = new CustomError(
+      500,
+      "InternalServerError",
+      err.message
+    );
+    return next(customError);
   }
 };

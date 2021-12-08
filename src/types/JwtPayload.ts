@@ -4,4 +4,5 @@ export type IJwtPayload = {
   id: string;
   email: string;
   role: Role;
+  tokenVersion: number;
 };

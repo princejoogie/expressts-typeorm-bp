@@ -1,8 +1,13 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "src/orm/entities/User";
+import { CustomError } from "src/utils/response/customError";
 
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userRepository = getRepository(User);
 
   try {
@@ -17,11 +22,13 @@ export const getUsers = async (req: Request, res: Response) => {
       ],
     });
 
-    return res.status(200).json(users);
+    return res.customSuccess(200, users);
   } catch (err: any) {
-    return res.status(500).json({
-      type: err.name,
-      message: err.message,
-    });
+    const customError = new CustomError(
+      500,
+      "InternalServerError",
+      err.message
+    );
+    return next(customError);
   }
 };

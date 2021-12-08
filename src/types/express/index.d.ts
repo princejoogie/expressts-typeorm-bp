@@ -7,11 +7,7 @@ declare global {
       jwtPayload: IJwtPayload;
     }
     export interface Response {
-      customSuccess(
-        httpStatusCode: number,
-        message: string,
-        data?: any
-      ): Response;
+      customSuccess(httpStatusCode: number, data?: any): Response;
     }
   }
 }

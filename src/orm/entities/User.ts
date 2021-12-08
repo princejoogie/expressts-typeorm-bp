@@ -38,6 +38,11 @@ export class User {
   })
   role: string;
 
+  @Column({
+    default: 0,
+  })
+  tokenVersion: number;
+
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);
   }

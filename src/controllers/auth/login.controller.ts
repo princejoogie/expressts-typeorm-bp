@@ -90,11 +90,12 @@ export const login = async (
       id: user.id,
       email: user.email,
       role: user.role as Role,
+      tokenVersion: user.tokenVersion,
     };
 
     try {
       const token = createJwtToken(payload);
-      return res.customSuccess(200, "Login successful", { token });
+      return res.customSuccess(200, { token });
     } catch (err) {
       const customError = new CustomError(
         400,
