@@ -11,6 +11,7 @@ export const errorHandler = (
   if (err instanceof CustomError) {
     return res.status(err.StatusCode).json(err.JSON);
   }
+
   const customError = new CustomError(
     500,
     "InternalServerError",

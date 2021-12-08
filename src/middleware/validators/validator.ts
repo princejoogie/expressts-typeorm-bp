@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { CustomError } from "src/utils/response/customError";
 import { AnySchema } from "yup";
 
 export interface IValidator {
@@ -16,10 +17,13 @@ const validate =
       if (schema.params) req.params = await schema.params.validate(req.params);
       return next();
     } catch (err: any) {
-      return res.status(500).send({
-        type: err.name,
-        message: err.message,
-      });
+      const customError = new CustomError(
+        404,
+        "Validation",
+        err.message,
+        err.errors
+      );
+      return next(customError);
     }
   };
 
