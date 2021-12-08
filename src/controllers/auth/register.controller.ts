@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "src/orm/entities/User";
+import { registerDto } from "src/middleware/validators/schema/auth.schema";
 
 export const register = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { email, firstName, lastName, password } = req.body;
+  const { email, firstName, lastName, password } =
+    req.body as registerDto["body"];
   const userRepository = getRepository(User);
 
   try {

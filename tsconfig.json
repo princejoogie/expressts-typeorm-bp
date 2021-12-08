@@ -2,11 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Node 16",
   "compilerOptions": {
-    "lib": [
-      "es2021",
-      "dom",
-      "esnext.asynciterable"
-    ],
+    "lib": ["es2021", "dom", "esnext.asynciterable"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
@@ -18,10 +14,9 @@
     "strictPropertyInitialization": false,
     "target": "es2021",
     "baseUrl": "./",
+    "typeRoots": ["./src/types", "./node_modules/@types"],
     "paths": {
-      "src/*": [
-        "./src/*"
-      ]
+      "src/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -29,11 +24,6 @@
       }
     ]
   },
-  "exclude": [
-    "node_modules",
-    ".eslintrc.js"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules", ".eslintrc.js"],
+  "include": ["src"]
 }

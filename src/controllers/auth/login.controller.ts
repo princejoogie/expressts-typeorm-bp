@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "src/orm/entities/User";
+import { loginDto } from "src/middleware/validators/schema/auth.schema";
+import { IJwtPayload } from "src/types/JwtPayload";
+import { createJwtToken } from "src/utils/helpers";
+import { Role } from "src/orm/entities/types";
 
 export const login = async (req: Request, res: Response): Promise<Response> => {
-  const { email, password } = req.body;
-
+  const { email, password } = req.body as loginDto["body"];
   const userRepository = getRepository(User);
 
   try {
@@ -26,8 +29,14 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
       });
     }
 
+    const payload: IJwtPayload = {
+      id: user.id,
+      email: user.email,
+      role: user.role as Role,
+    };
+
     return res.json({
-      accessToken: "token-fake",
+      accessToken: createJwtToken(payload),
     });
   } catch (err: any) {
     return res.status(400).json({

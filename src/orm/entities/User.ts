@@ -6,11 +6,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Role } from "./types";
 
 @Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column()
   email: string;
@@ -31,6 +32,11 @@ export class User {
   @Column()
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({
+    default: "USER" as Role,
+  })
+  role: string;
 
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);

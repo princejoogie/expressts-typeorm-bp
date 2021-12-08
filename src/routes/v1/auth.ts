@@ -4,7 +4,7 @@ import { login, register } from "src/controllers/auth";
 import {
   loginSchema,
   registerSchema,
-} from "src/middleware/validators/auth.schema";
+} from "src/middleware/validators/schema/auth.schema";
 
 const router = Router();
 
