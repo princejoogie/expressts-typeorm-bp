@@ -10,3 +10,7 @@ temp/
 # logs
 yarn-error.log
 log/access.log
+
+# cache
+.cache/
+.eslintcache

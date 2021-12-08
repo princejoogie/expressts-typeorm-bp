@@ -1,12 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { IJwtPayload } from "../JwtPayload";
 
-export declare global {
-  export namespace Express {
+declare global {
+  namespace Express {
     export interface Request {
       jwtPayload: IJwtPayload;
     }
-    // export interface Response {
-    //   customSuccess(httpStatusCode: number, message: string, data?: any): Response;
-    // }
+    export interface Response {
+      customSuccess(
+        httpStatusCode: number,
+        message: string,
+        data?: any
+      ): Response;
+    }
   }
 }

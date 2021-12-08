@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { deleteUserById, getUsers, getUserById } from "src/controllers/users";
-import { checkJwt } from "src/middleware/checkJwt";
-import { checkRole } from "src/middleware/checkRole";
+import { checkJwt, checkRole } from "src/middleware";
 
 const router = Router();
 

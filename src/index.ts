@@ -8,8 +8,10 @@ import fs from "fs";
 import path from "path";
 import morgan from "morgan";
 
+import "./utils/response/customSuccess";
 import routes from "./routes";
 import { dbCreateConnection } from "./orm/dbCreateConnection";
+import { errorHandler } from "./middleware";
 
 const PORT = process.env.PORT || 4000;
 
@@ -37,6 +39,8 @@ const main = async () => {
   app.use(morgan("combined"));
 
   app.use("/", routes);
+
+  app.use(errorHandler);
 
   app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}!`);
